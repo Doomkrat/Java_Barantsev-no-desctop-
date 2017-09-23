@@ -8,12 +8,11 @@ public class myFirstProgram {
       hello("user");
       hello("sergii");
 
-      double l=5;
-      System.out.println("square sq with one side"+l+" = "+ area(l));
+      Square s = new Square(5);
+      System.out.println("square sq with one side "+s.l+" = "+ s.area());
 
-      double a=5;
-      double b=6;
-      System.out.println("reqtang square "+a+" and "+b+" = "+area(a,b));
+      Rectangle r = new Rectangle (4,6);
+      System.out.println("rectang square "+r.a+" and "+r.b+" = "+r.area());
 
 
     }
@@ -22,10 +21,5 @@ public class myFirstProgram {
       System.out.println("Hello, " + somebody + "!");
 
     }
-    public static double area (double len){
-      return len * len;
-    }
-    public static double area(double a, double b){
-      return a*b;
-    }
+
 }
