@@ -9,7 +9,7 @@ public class myFirstProgram {
       hello("sergii");
 
       Square s = new Square(5);
-      System.out.println("square sq with one side "+s.l+" = "+ s.area());
+      System.out.println("square sq with one side "+s.l+" = "+ s.area( ));
 
       Rectangle r = new Rectangle (4,6);
       System.out.println("rectang square "+r.a+" and "+r.b+" = "+r.area());
