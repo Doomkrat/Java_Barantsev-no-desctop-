@@ -22,10 +22,6 @@ public class qwertytest {
     public void setUp() throws Exception {
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-    }
-    
-    @Test
-    public void qwertytest() {
         wd.get("http://localhost:8080/addressbook/group.php");
         wd.findElement(By.name("pass")).click();
         wd.findElement(By.name("pass")).sendKeys("\\undefined");
@@ -37,6 +33,11 @@ public class qwertytest {
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+    }
+    
+    @Test
+    public void testqwertytest() {
+
         wd.findElement(By.linkText("groups")).click();
         wd.findElement(By.name("new")).click();
         wd.findElement(By.name("group_name")).click();
@@ -49,9 +50,7 @@ public class qwertytest {
         wd.findElement(By.name("group_footer")).clear();
         wd.findElement(By.name("group_footer")).sendKeys("b");
         wd.findElement(By.name("submit")).click();
-        wd.findElement(By.linkText("php-addressbook")).click();
-        wd.navigate().back();
-        wd.findElement(By.linkText("group page")).click();
+
     }
     
     @AfterMethod
