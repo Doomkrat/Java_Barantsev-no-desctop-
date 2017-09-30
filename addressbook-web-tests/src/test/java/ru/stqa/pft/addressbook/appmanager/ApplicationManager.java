@@ -41,10 +41,6 @@ public class ApplicationManager {
     wd.quit();
   }
 
-  public void gotoHomePage() {
-    wd.findElement(By.linkText("home")).click();
-  }
-
   public GroupHelper getGroupHelper() {
     return groupHelper;
   }
