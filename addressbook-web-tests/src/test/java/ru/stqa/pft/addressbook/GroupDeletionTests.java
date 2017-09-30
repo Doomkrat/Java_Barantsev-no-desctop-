@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook;
 
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -20,13 +19,13 @@ public class GroupDeletionTests {
     
     @BeforeMethod
     public void setUp() throws Exception {
-        wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+        wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     }
     
     @Test
-    public void GroupDeletionTests() {
-        wd.get("http://localhost:8080/addressbook/group.php");
+    public void testGroupDeletionTests() {
+        wd.get("http://localhost:8080/addressbook/index.php");
         wd.findElement(By.name("pass")).click();
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
@@ -34,9 +33,8 @@ public class GroupDeletionTests {
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys("admin");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-        if (!wd.findElement(By.xpath("//div[@id='content']/form/span[4]/input")).isSelected()) {
-            wd.findElement(By.xpath("//div[@id='content']/form/span[4]/input")).click();
-        }
+        wd.findElement(By.linkText("groups")).click();
+        wd.findElement(By.name("selected[]")).click();
         wd.findElement(By.name("delete")).click();
         wd.findElement(By.linkText("group page")).click();
     }

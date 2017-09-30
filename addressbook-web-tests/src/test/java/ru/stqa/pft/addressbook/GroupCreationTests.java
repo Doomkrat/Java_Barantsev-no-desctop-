@@ -11,15 +11,15 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 
 public class GroupCreationTests {
-    FirefoxDriver wd;
-    
-    @BeforeMethod
-    public void setUp() throws Exception {
-        wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        wd.get("http://localhost:8080/addressbook/group.php");
-      login("admin", "secret");
-    }
+  FirefoxDriver wd;
+
+  @BeforeMethod
+  public void setUp() throws Exception {
+    wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    wd.get("http://localhost:8080/addressbook/group.php");
+    login("admin", "secret");
+  }
 
   private void login(String username, String password) {
     wd.findElement(By.name("pass")).click();
@@ -32,13 +32,11 @@ public class GroupCreationTests {
   }
 
   @Test
-    public void testGroupCreationtion() {
+  public void testGroupCreationtion() {
 
-    gotoGroupPage();
-
+    returnToGroupPage();
     initGroupCreation();
-
-    fillGroupForm(new GroupData("zzzz", "aaaa", "b"));
+    fillGroupForm(new GroupData("Sergii", "ThisHeader", "ThisFooter"));
     submitGroupCreation();
 
   }
@@ -48,7 +46,7 @@ public class GroupCreationTests {
   }
 
   private void fillGroupForm(GroupData groupData) {
-    wd.findElement(By.name("new")).click();
+    wd.findElement(By.name("group_name")).click();
     wd.findElement(By.name("group_name")).clear();
     wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
     wd.findElement(By.name("group_header")).click();
@@ -60,24 +58,24 @@ public class GroupCreationTests {
   }
 
   private void initGroupCreation() {
-    wd.findElement(By.name("group_name")).click();
+    wd.findElement(By.name("new")).click();
   }
 
-  private void gotoGroupPage() {
+  private void returnToGroupPage() {
     wd.findElement(By.linkText("groups")).click();
   }
 
   @AfterMethod
-    public void tearDown() {
-        wd.quit();
+  public void tearDown() {
+    wd.quit();
+  }
+
+  public static boolean isAlertPresent(FirefoxDriver wd) {
+    try {
+      wd.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
     }
-    
-    public static boolean isAlertPresent(FirefoxDriver wd) {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
+  }
 }
