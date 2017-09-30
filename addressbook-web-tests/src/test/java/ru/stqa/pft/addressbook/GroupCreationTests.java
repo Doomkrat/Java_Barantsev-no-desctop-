@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 
-public class qwertytest {
+public class GroupCreationTests {
     FirefoxDriver wd;
     
     @BeforeMethod
@@ -23,24 +23,21 @@ public class qwertytest {
 
   private void login(String username, String password) {
     wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).sendKeys("\\undefined");
+    wd.findElement(By.name("pass")).clear();
+    wd.findElement(By.name("pass")).sendKeys(password);
     wd.findElement(By.name("user")).click();
     wd.findElement(By.name("user")).clear();
     wd.findElement(By.name("user")).sendKeys(username);
-    wd.findElement(By.id("LoginForm")).click();
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
     wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
   }
 
   @Test
-    public void testqwertytest() {
+    public void testGroupCreationtion() {
 
     gotoGroupPage();
-    wd.findElement(By.name("new")).click();
+
     initGroupCreation();
-    wd.findElement(By.name("group_name")).clear();
+
     fillGroupForm(new GroupData("zzzz", "aaaa", "b"));
     submitGroupCreation();
 
@@ -51,6 +48,8 @@ public class qwertytest {
   }
 
   private void fillGroupForm(GroupData groupData) {
+    wd.findElement(By.name("new")).click();
+    wd.findElement(By.name("group_name")).clear();
     wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
     wd.findElement(By.name("group_header")).click();
     wd.findElement(By.name("group_header")).clear();
