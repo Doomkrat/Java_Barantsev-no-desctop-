@@ -9,9 +9,11 @@ public class qwertytest extends TestBase {
     public void testqwertytest() {
 
     app.getNavigationHelper().gotoGroupPage();
-    app.getGroupHelper().initGroupCreation();
-    app.getGroupHelper().fillGroupForm(new GroupData("zzzz", "aaaa", "b"));
-    app.getGroupHelper().submitGroupCreation(app.getGroupHelper().wd.findElement(By.name("submit")));
+    app.getGfroupHelper().wd.findElement(By.name("new")).click();
+    app.getGfroupHelper().initGroupCreation();
+    app.getGfroupHelper().wd.findElement(By.name("group_name")).clear();
+    app.getGfroupHelper().fillGroupForm(new GroupData("zzzz", "aaaa", "b"));
+    app.getGfroupHelper().submitGroupCreation();
 
   }
 

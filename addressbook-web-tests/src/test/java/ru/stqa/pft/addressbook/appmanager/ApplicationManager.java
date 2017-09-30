@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
@@ -10,14 +12,22 @@ public class ApplicationManager {
 
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
-  private GroupHelper groupHelper;
+  private  GfroupHelper gfroupHelper;
 
+  public static boolean isAlertPresent(FirefoxDriver wd) {
+        try {
+            wd.switchTo().alert();
+            return true;
+        } catch (NoAlertPresentException e) {
+            return false;
+        }
+    }
 
   public void init() {
     wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost:8080/addressbook/group.php");
-    groupHelper = new GroupHelper(wd);
+    gfroupHelper = new GfroupHelper (wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login("admin", "secret");
@@ -29,8 +39,8 @@ public class ApplicationManager {
     wd.quit();
   }
 
-  public GroupHelper getGroupHelper() {
-    return groupHelper;
+  public GfroupHelper getGfroupHelper() {
+    return gfroupHelper;
   }
 
   public NavigationHelper getNavigationHelper() {
