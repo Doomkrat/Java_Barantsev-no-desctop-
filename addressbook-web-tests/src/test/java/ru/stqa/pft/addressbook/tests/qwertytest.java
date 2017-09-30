@@ -8,12 +8,12 @@ public class qwertytest extends TestBase {
   @Test
     public void testqwertytest() {
 
-    app.getNavigationHelper().gotoGroupPage();
-    app.getGfroupHelper().wd.findElement(By.name("new")).click();
-    app.getGfroupHelper().initGroupCreation();
-    app.getGfroupHelper().wd.findElement(By.name("group_name")).clear();
-    app.getGfroupHelper().fillGroupForm(new GroupData("zzzz", "aaaa", "b"));
-    app.getGfroupHelper().submitGroupCreation();
+    app.gotoGroupPage();
+    app.wd.findElement(By.name("new")).click();
+    app.initGroupCreation();
+    app.wd.findElement(By.name("group_name")).clear();
+    app.fillGroupForm(new GroupData("zzzz", "aaaa", "b"));
+    app.submitGroupCreation();
 
   }
 
