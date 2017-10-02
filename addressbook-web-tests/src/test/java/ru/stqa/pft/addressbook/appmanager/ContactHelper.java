@@ -24,4 +24,17 @@ public class ContactHelper extends HelperBase {
 
     click(By.linkText("add new"));
   }
+
+  public void selectContatCheckbox() {
+    if (!wd.findElement(By.name("selected[]")).isSelected()) {
+      wd.findElement(By.name("selected[]")).click();
+    }
+  }
+  public void submitContactDeletion() {
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+  }
+
+  public void dismissAlert() {
+    wd.switchTo().alert().accept();
+  }
 }
