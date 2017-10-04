@@ -6,10 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class HelperBase {
-  protected FirefoxDriver wd;
+  protected WebDriver wd;
 
   public HelperBase(WebDriver wd) {
-    this.wd = (FirefoxDriver) wd;
+    this.wd = (WebDriver) wd;
   }
 
   protected void click(By locator) {

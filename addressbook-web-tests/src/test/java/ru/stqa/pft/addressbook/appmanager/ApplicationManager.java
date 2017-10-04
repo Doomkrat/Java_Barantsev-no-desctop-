@@ -20,11 +20,14 @@ public class ApplicationManager {
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private SessionHelper sessionHelper;
+  private String browser;
 
+  public ApplicationManager(String browser) {
+    this.browser = browser;
+  }
 
 
   public void init() {
-    String browser = BrowserType.FIREFOX;
     if (browser == BrowserType.FIREFOX) {
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
     } else if (browser == BrowserType.CHROME){
@@ -32,7 +35,7 @@ public class ApplicationManager {
     } else if (browser == BrowserType.SAFARI){
       wd = new SafariDriver(new SafariOptions().setUseTechnologyPreview(true));
     }
-    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     wd.get("http://localhost:8080/addressbook/group.php");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
