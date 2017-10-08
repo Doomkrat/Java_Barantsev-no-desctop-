@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
@@ -28,11 +29,11 @@ public class ApplicationManager {
 
 
   public void init() {
-    if (browser == BrowserType.FIREFOX) {
+    if (Objects.equals(browser, BrowserType.FIREFOX)) {
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-    } else if (browser == BrowserType.CHROME){
+    } else if (Objects.equals(browser, BrowserType.CHROME)){
       wd = new ChromeDriver();
-    } else if (browser == BrowserType.SAFARI){
+    } else if (Objects.equals(browser, BrowserType.SAFARI)){
       wd = new SafariDriver(new SafariOptions().setUseTechnologyPreview(true));
     }
     wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
