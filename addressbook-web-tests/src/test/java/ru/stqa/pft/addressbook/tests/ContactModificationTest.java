@@ -14,7 +14,7 @@ public class ContactModificationTest extends TestBase {
     }
     int before = app.getContactHelper().getContactCount();
     app.getNavigationHelper().gotoHomePage();
-    app.getContactHelper().chooseEditContactButton();
+    app.getContactHelper().chooseEditContactButton(before - 1);
     app.getContactHelper().fillContactForm(new ContactData("Johny",
             "Mnemonik", "323123", "johnymnemomonik@gmail.com","Sergii"),false);
     app.getNavigationHelper().gotoHomePage();
