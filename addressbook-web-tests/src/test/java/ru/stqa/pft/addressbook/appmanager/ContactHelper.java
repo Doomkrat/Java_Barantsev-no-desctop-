@@ -1,14 +1,10 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchWindowException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +31,11 @@ public class ContactHelper extends HelperBase {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
-  public void modifyContact(ContactData contactData, int index) {
-    app.getNavigationHelper().gotoHomePage();
+  public void modifyC(ContactData contactData, int index) {
+    app.goTo().homePage();
     chooseEditContactButton(index);
     fillContactForm(contactData,false);
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().homePage();
 
   }
 
@@ -68,12 +64,16 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void createContact(ContactData Contact, boolean b) {
+  public void create(ContactData Contact, boolean b) {
     initContactCreation();
     fillContactForm(Contact,b);
     submitContactCreation();
   }
-
+  public void deleteContact(int index) {
+    selectContatCheckbox(index);
+    submitContactDeletion();
+    dismissAlert();
+  }
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -82,7 +82,7 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement>elements=wd.findElements(By.xpath(".//*[@name='entry']"));
     for (WebElement element : elements){
