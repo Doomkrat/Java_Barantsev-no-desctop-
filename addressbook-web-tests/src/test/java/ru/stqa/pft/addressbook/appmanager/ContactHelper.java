@@ -15,9 +15,12 @@ import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
-  public ContactHelper(WebDriver wd) {
+  public ContactHelper(ApplicationManager app) {
+    super(app);
+    this.app = app;
+    this.wd = app.wd;
 
-    super(wd);
+
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -31,6 +34,13 @@ public class ContactHelper extends HelperBase {
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
+  }
+  public void modifyContact(ContactData contactData, int index) {
+    app.getNavigationHelper().gotoHomePage();
+    chooseEditContactButton(index);
+    fillContactForm(contactData,false);
+    app.getNavigationHelper().gotoHomePage();
+
   }
 
   public void initContactCreation() { click(By.linkText("add new")); }

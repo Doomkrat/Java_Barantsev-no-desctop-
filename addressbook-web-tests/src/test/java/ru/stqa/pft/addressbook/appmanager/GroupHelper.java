@@ -11,8 +11,12 @@ import java.util.List;
 
 public class GroupHelper extends HelperBase {
 
-  public GroupHelper(WebDriver wd) {
-    super(wd);
+  public GroupHelper(ApplicationManager app) {
+    super(app);
+    this.app = app;
+    this.wd = app.wd;
+
+
   }
 
   public void submitGroupCreation() { click(By.name("submit")); }
@@ -44,6 +48,13 @@ public class GroupHelper extends HelperBase {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
+    returnToGroupPage();
+  }
+  public void modifyGroup(int index, GroupData group) {
+   selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
     returnToGroupPage();
   }
 
