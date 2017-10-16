@@ -35,6 +35,7 @@ public class ContactHelper extends HelperBase {
     app.goTo().homePage();
     chooseEditContactButton(index);
     fillContactForm(contactData,false);
+    submitContactUpdate();
     app.goTo().homePage();
 
   }
@@ -90,8 +91,7 @@ public class ContactHelper extends HelperBase {
       String firstName = contactEntries.get(2).getText();
       String lastName = contactEntries.get(1).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData(id,firstName, lastName, null, null, null);
-      contacts.add(contact);
+      contacts.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName));
     }
     return contacts;
   }
