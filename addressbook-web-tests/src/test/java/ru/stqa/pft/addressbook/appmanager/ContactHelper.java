@@ -7,7 +7,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -26,8 +28,10 @@ public class ContactHelper extends HelperBase {
     type(By.name("email"), contactData.getEmail());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    } else {
+      if (!(contactData.getGroup() == null)) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      }
+    }else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
@@ -65,9 +69,9 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void create(ContactData Contact, boolean b) {
+  public void create(ContactData contact, boolean b) {
     initContactCreation();
-    fillContactForm(Contact,b);
+    fillContactForm(contact,b);
     submitContactCreation();
   }
   public void deleteContact(int index) {
@@ -85,6 +89,18 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement>elements=wd.findElements(By.xpath(".//*[@name='entry']"));
+    for (WebElement element : elements){
+      List <WebElement> contactEntries = element.findElements(By.cssSelector("td"));
+      String firstName = contactEntries.get(2).getText();
+      String lastName = contactEntries.get(1).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      contacts.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName));
+    }
+    return contacts;
+  }
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement>elements=wd.findElements(By.xpath(".//*[@name='entry']"));
     for (WebElement element : elements){
       List <WebElement> contactEntries = element.findElements(By.cssSelector("td"));
