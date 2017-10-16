@@ -51,6 +51,11 @@ public class ContactHelper extends HelperBase {
       wd.findElements(By.name("selected[]")).get(index).click();
     }
   }
+  public void selectContatCheckboxById(int id) {
+    if (!wd.findElement(By.name("selected[]")).isSelected()) {
+      wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    }
+  }
   public void submitContactCreation(){click(By.name("submit"));}
 
   public void submitContactDeletion() {
@@ -76,6 +81,11 @@ public class ContactHelper extends HelperBase {
   }
   public void deleteContact(int index) {
     selectContatCheckbox(index);
+    submitContactDeletion();
+    dismissAlert();
+  }
+  public void delete(ContactData contact) {
+    selectContatCheckboxById(contact.getId());
     submitContactDeletion();
     dismissAlert();
   }
@@ -111,4 +121,6 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
+
 }
