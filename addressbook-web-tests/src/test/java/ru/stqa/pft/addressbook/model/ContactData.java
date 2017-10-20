@@ -8,17 +8,67 @@ public class ContactData {
   private  String homePhone;
   private  String mobilePhone;
   private  String workPhone;
+  private  String allPhones;
+  private  String eMail;
+  private  String eMail2;
+  private  String eMail3;
+  private  String address;
+  private  String allEmails;
 
-  public ContactData witWorkPhone(String workPhone) {
+
+
+  public ContactData witheMail(String eMail) {
+    this.eMail = eMail;
+    return this;
+  }
+
+
+
+  public ContactData witheMail2(String eMail2) {
+    this.eMail2 = eMail2;
+    return this;
+  }
+
+
+
+  public ContactData witheMail3(String eMail3) {
+    this.eMail3 = eMail3;
+    return this;
+  }
+
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+
+
+  public ContactData withWorkPhone(String workPhone) {
     this.workPhone = workPhone;
     return this;
   }
 
-  public ContactData witMobilePhone(String mobilePhone) {
+  public ContactData withMobilePhone(String mobilePhone) {
     this.mobilePhone = mobilePhone;
     return this;
   }
-  public ContactData witHomePhone(String homePhone) {
+  public ContactData withHomePhone(String homePhone) {
     this.homePhone = homePhone;
     return this;
   }
@@ -43,34 +93,28 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withEmail(String email) {
-    this.mobilePhone = email;
-    return this;
-  }
 
   public ContactData withGroup(String group) {
     this.group = group;
     return this;
   }
+  public String getAddress() { return address; }
 
+  public String getAllEmails() { return allEmails; }
 
-  public String getWorkPhone() {
+  public String geteMail3() { return eMail3; }
 
-    return workPhone;
-  }
+  public String geteMail2() { return eMail2; }
 
-  public String getFirstname() {
+  public String geteMail() { return eMail; }
 
-    return firstname;
-  }
+  public String getWorkPhone() { return workPhone; }
 
-  public int getId() {
-    return id; }
+  public String getFirstname() { return firstname; }
 
-  public String getLastname() {
+  public int getId() { return id; }
 
-    return lastname;
-  }
+  public String getLastname() { return lastname; }
 
   public String getHomePhone() {
     return homePhone;
