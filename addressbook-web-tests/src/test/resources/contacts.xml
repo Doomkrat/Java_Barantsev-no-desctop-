@@ -1,0 +1,52 @@
+<list>
+  <contact>
+    <firstname>First 0</firstname>
+    <lastname>Last 0</lastname>
+    <homePhone>5550</homePhone>
+    <mobilePhone>66670</mobilePhone>
+    <workPhone>7770</workPhone>
+    <eMail>email0@testmail.com</eMail>
+    <eMail2>email20@testmail.com</eMail2>
+    <eMail3>test30@testmail.com</eMail3>
+  </contact>
+  <contact>
+    <firstname>First 1</firstname>
+    <lastname>Last 1</lastname>
+    <homePhone>5551</homePhone>
+    <mobilePhone>66671</mobilePhone>
+    <workPhone>7771</workPhone>
+    <eMail>email1@testmail.com</eMail>
+    <eMail2>email21@testmail.com</eMail2>
+    <eMail3>test31@testmail.com</eMail3>
+  </contact>
+  <contact>
+    <firstname>First 2</firstname>
+    <lastname>Last 2</lastname>
+    <homePhone>5552</homePhone>
+    <mobilePhone>66672</mobilePhone>
+    <workPhone>7772</workPhone>
+    <eMail>email2@testmail.com</eMail>
+    <eMail2>email22@testmail.com</eMail2>
+    <eMail3>test32@testmail.com</eMail3>
+  </contact>
+  <contact>
+    <firstname>First 3</firstname>
+    <lastname>Last 3</lastname>
+    <homePhone>5553</homePhone>
+    <mobilePhone>66673</mobilePhone>
+    <workPhone>7773</workPhone>
+    <eMail>email3@testmail.com</eMail>
+    <eMail2>email23@testmail.com</eMail2>
+    <eMail3>test33@testmail.com</eMail3>
+  </contact>
+  <contact>
+    <firstname>First 4</firstname>
+    <lastname>Last 4</lastname>
+    <homePhone>5554</homePhone>
+    <mobilePhone>66674</mobilePhone>
+    <workPhone>7774</workPhone>
+    <eMail>email4@testmail.com</eMail>
+    <eMail2>email24@testmail.com</eMail2>
+    <eMail3>test34@testmail.com</eMail3>
+  </contact>
+</list>

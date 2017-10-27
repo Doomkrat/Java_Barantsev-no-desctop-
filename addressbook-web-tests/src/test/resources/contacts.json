@@ -1,0 +1,52 @@
+[
+  {
+    "firstname": "First 0",
+    "lastname": "Last 0",
+    "homePhone": "5550",
+    "mobilePhone": "66670",
+    "workPhone": "7770",
+    "eMail": "email0@testmail.com",
+    "eMail2": "email20@testmail.com",
+    "eMail3": "test30@testmail.com"
+  },
+  {
+    "firstname": "First 1",
+    "lastname": "Last 1",
+    "homePhone": "5551",
+    "mobilePhone": "66671",
+    "workPhone": "7771",
+    "eMail": "email1@testmail.com",
+    "eMail2": "email21@testmail.com",
+    "eMail3": "test31@testmail.com"
+  },
+  {
+    "firstname": "First 2",
+    "lastname": "Last 2",
+    "homePhone": "5552",
+    "mobilePhone": "66672",
+    "workPhone": "7772",
+    "eMail": "email2@testmail.com",
+    "eMail2": "email22@testmail.com",
+    "eMail3": "test32@testmail.com"
+  },
+  {
+    "firstname": "First 3",
+    "lastname": "Last 3",
+    "homePhone": "5553",
+    "mobilePhone": "66673",
+    "workPhone": "7773",
+    "eMail": "email3@testmail.com",
+    "eMail2": "email23@testmail.com",
+    "eMail3": "test33@testmail.com"
+  },
+  {
+    "firstname": "First 4",
+    "lastname": "Last 4",
+    "homePhone": "5554",
+    "mobilePhone": "66674",
+    "workPhone": "7774",
+    "eMail": "email4@testmail.com",
+    "eMail2": "email24@testmail.com",
+    "eMail3": "test34@testmail.com"
+  }
+]
