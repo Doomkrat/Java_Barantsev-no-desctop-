@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.ContactCreationTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-10-30T05:07:54" hostname="user1s-iMac.local" time="62.579">
+  <properties/>
+  <testcase name="testContactCreation[0](ContactData{id=2147483647, firstname='First 0', lastname='Last 0'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTests" time="18.238"/>
+  <testcase name="testContactCreation[1](ContactData{id=2147483647, firstname='First 1', lastname='Last 1'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTests" time="9.44"/>
+  <testcase name="testContactCreation[2](ContactData{id=2147483647, firstname='First 2', lastname='Last 2'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTests" time="10.118"/>
+  <testcase name="testContactCreation[3](ContactData{id=2147483647, firstname='First 3', lastname='Last 3'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTests" time="11.527"/>
+  <testcase name="testContactCreation[4](ContactData{id=2147483647, firstname='First 4', lastname='Last 4'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTests" time="13.256"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[1509340131813	addons.productaddons	INFO	sending request to: https://aus5.mozilla.org/update/3/GMP/52.4.1/20171005074949/Darwin_x86_64-gcc3-u-i386-x86_64/en-US/esr/Darwin%2016.7.0/default/default/update.xml
+1509340132238	addons.productaddons	INFO	Completed downloading document
+1509340132509	addons.productaddons	INFO	downloadXHR File download. status=200
+1509340132521	addons.productaddons	INFO	Downloaded file will be saved to /var/folders/q0/gr8h9vs52k34v09x5y1h4yhh0000gn/T/tmpaddon
+1509340133560	addons.productaddons	INFO	downloadXHR File download. status=200
+1509340133564	addons.productaddons	INFO	Downloaded file will be saved to /var/folders/q0/gr8h9vs52k34v09x5y1h4yhh0000gn/T/tmpaddon
+]]></system-err>
+</testsuite>
