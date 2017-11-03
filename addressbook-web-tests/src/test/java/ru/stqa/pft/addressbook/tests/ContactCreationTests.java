@@ -52,6 +52,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsJson")
     public void testContactCreation(ContactData contact) {
+//
     app.goTo().homePage();
     Contacts before = app.contact().all();
     //File photo = new File("src/test/resources/bat.jpg");
