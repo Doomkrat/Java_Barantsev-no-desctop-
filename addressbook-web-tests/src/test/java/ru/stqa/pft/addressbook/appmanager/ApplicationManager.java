@@ -45,7 +45,7 @@ public class ApplicationManager {
     } else if (Objects.equals(browser, BrowserType.SAFARI)){
       wd = new SafariDriver(new SafariOptions().setUseTechnologyPreview(true));
     }
-    wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
     wd.get(properties.getProperty("web.baseUrl"));
     groupHelper = new GroupHelper(this);
     navigationHelper = new NavigationHelper(this);
