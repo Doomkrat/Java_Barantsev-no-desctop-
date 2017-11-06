@@ -7,6 +7,8 @@ import ru.stqa.pft.addressbook.model.Groups;
 import java.sql.*;
 
 public class DbConectionTest {
+
+
   @Test
   public void testDbConnection(){
     Connection conn = null;
