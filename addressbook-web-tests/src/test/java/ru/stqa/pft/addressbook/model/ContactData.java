@@ -21,11 +21,11 @@ public class ContactData {
 
   @Expose
   @Column(name = "firstname")
-  private  String firstname;
+  private  String firstname = "";
 
   @Expose
   @Column(name = "lastname")
-  private  String lastname;
+  private  String lastname = "";
 
   @XStreamOmitField
   @Transient
@@ -34,36 +34,36 @@ public class ContactData {
   @Expose
   @Column(name = "home")
   @Type(type = "text")
-  private  String homePhone;
+  private  String homePhone = "";
 
   @Expose
   @Column(name = "mobile")
   @Type(type = "text")
-  private  String mobilePhone;
+  private  String mobilePhone = "";
 
   @Expose
   @Column(name = "work")
   @Type(type = "text")
-  private  String workPhone;
+  private  String workPhone = "";
 
   @XStreamOmitField
   @Transient
-  private  String allPhones;
+  private  String allPhones = "";
 
   @Expose
   @Column(name = "email")
   @Type(type = "text")
-  private  String eMail;
+  private  String eMail = "";
 
   @Expose
   @Column(name = "email2")
   @Type(type = "text")
-  private  String eMail2;
+  private  String eMail2 = "";
 
   @Expose
   @Column(name = "email3")
   @Type(type = "text")
-  private  String eMail3;
+  private  String eMail3 = "";
 
   @Override
   public String toString() {
@@ -85,7 +85,41 @@ public class ContactData {
   @Column(name = "photo")
   @Type(type = "text")
   @Transient
-  private String photo;
+  private String photo = "";
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != that.id) return false;
+    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+    if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
+    if (homePhone != null ? !homePhone.equals(that.homePhone) : that.homePhone != null) return false;
+    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) return false;
+    if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
+    if (eMail != null ? !eMail.equals(that.eMail) : that.eMail != null) return false;
+    if (eMail2 != null ? !eMail2.equals(that.eMail2) : that.eMail2 != null) return false;
+    if (eMail3 != null ? !eMail3.equals(that.eMail3) : that.eMail3 != null) return false;
+    return address != null ? address.equals(that.address) : that.address == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    result = 31 * result + (homePhone != null ? homePhone.hashCode() : 0);
+    result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
+    result = 31 * result + (workPhone != null ? workPhone.hashCode() : 0);
+    result = 31 * result + (eMail != null ? eMail.hashCode() : 0);
+    result = 31 * result + (eMail2 != null ? eMail2.hashCode() : 0);
+    result = 31 * result + (eMail3 != null ? eMail3.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    return result;
+  }
 
   public File getPhoto() {
     return new File(photo);
@@ -207,26 +241,6 @@ public class ContactData {
 
   public String getGroup() {
     return group;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (id != that.id) return false;
-    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-    return result;
   }
 
 }
