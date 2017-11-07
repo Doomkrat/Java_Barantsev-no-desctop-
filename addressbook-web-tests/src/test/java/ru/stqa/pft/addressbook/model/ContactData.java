@@ -75,8 +75,10 @@ public class ContactData {
   }
 
   @XStreamOmitField
-  @Transient
-  private  String address;
+  //@Transient
+  @Column(name = "address")
+  @Type(type = "text")
+  private  String address = "";
 
   @XStreamOmitField
   @Transient
