@@ -9,6 +9,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
+import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
@@ -21,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBase {
 
-  protected static  ApplicationManager app;
+  protected static ApplicationManager app;
   org.slf4j.Logger logger = LoggerFactory.getLogger(TestBase.class);
 
   @BeforeSuite
@@ -36,13 +38,14 @@ public class TestBase {
   }
 
   @BeforeMethod
-  public void logTestStart(Method m, Object[] p){
-    logger.info("Start test"+m.getName()+ "with parameters"+ Arrays.asList(p));
+  public void logTestStart(Method m, Object[] p) {
+    logger.info("Start test" + m.getName() + "with parameters" + Arrays.asList(p));
 
   }
+
   @AfterMethod(alwaysRun = true)
-  public void logTestStop(Method m){
-    logger.info("Stop test "+m.getName());
+  public void logTestStop(Method m) {
+    logger.info("Stop test " + m.getName());
 
   }
 
@@ -54,6 +57,18 @@ public class TestBase {
               .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
               .collect(Collectors.toSet())));
 
+    }
+  }
+
+  public void verifyContactListUI() {
+    if (Boolean.getBoolean("verifyUI")) {
+      Contacts dbContacts = app.db().contacts();
+      Contacts uiContacts = app.contact().all();
+      assertThat(uiContacts, equalTo(dbContacts.stream().map((c) ->
+              new ContactData().withId(c.getId()).withFirstname(c.getFirstname()).withLastname(c.getLastname())
+                      .withHomePhone(c.getHomePhone()).witheMail(c.geteMail()).withMobilePhone(c.getMobilePhone())
+                      .withWorkPhone(c.getWorkPhone()).witheMail2(c.geteMail2()).witheMail3(c.geteMail3())
+                      .withAddress(c.getAddress())).collect(Collectors.toSet())));
     }
   }
 }
