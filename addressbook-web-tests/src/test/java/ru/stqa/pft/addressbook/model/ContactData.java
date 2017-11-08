@@ -82,7 +82,7 @@ public class ContactData {
 
   @XStreamOmitField
   @Transient
-  private  String allEmails;
+  private  String allEmails = "";
 
   @Column(name = "photo")
   @Type(type = "text")
