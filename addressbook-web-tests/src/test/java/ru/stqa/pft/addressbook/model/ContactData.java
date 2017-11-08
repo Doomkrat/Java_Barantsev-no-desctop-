@@ -65,20 +65,28 @@ public class ContactData {
   @Type(type = "text")
   private  String eMail3 = "";
 
+  @XStreamOmitField
+  //@Transient
+  @Column(name = "address")
+  @Type(type = "text")
+  private  String address = "";
+
   @Override
   public String toString() {
     return "ContactData{" +
             "id=" + id +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
+            ", group='" + group + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
+            ", eMail='" + eMail + '\'' +
+            ", eMail2='" + eMail2 + '\'' +
+            ", eMail3='" + eMail3 + '\'' +
+            ", address='" + address + '\'' +
             '}';
   }
-
-  @XStreamOmitField
-  //@Transient
-  @Column(name = "address")
-  @Type(type = "text")
-  private  String address = "";
 
   @XStreamOmitField
   @Transient

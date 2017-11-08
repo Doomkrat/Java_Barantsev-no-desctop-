@@ -6,8 +6,11 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.tests.ContactPhoneTests;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ContactHelper extends HelperBase {
 
@@ -24,12 +27,11 @@ public class ContactHelper extends HelperBase {
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("email"), contactData.geteMail());
-    type(By.name("work"),contactData.getWorkPhone());
-    type(By.name("mobile"),contactData.getMobilePhone());
-    type(By.name("email2"),contactData.geteMail2());
-    type(By.name("email3"),contactData.geteMail3());
-    type(By.name("address"),contactData.getAddress());
-
+    type(By.name("work"), contactData.getWorkPhone());
+    type(By.name("mobile"), contactData.getMobilePhone());
+    type(By.name("email2"), contactData.geteMail2());
+    type(By.name("email3"), contactData.geteMail3());
+    type(By.name("address"), contactData.getAddress());
 
 
     if (creation) {
@@ -73,7 +75,7 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public ContactData infoFromEditForm(ContactData contact){
+  public ContactData infoFromEditForm(ContactData contact) {
     initContactModificationById(contact.getId());
     String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
@@ -86,7 +88,7 @@ public class ContactHelper extends HelperBase {
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
 
     wd.navigate().back();
-    return  new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname).
+    return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname).
             withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withAddress(address).
             witheMail(email).witheMail2(email2).witheMail3(email3);
 
@@ -94,7 +96,7 @@ public class ContactHelper extends HelperBase {
 
 
   public void initContactModificationById(int id) {
-    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']",id)));
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
     WebElement row = checkbox.findElement(By.xpath("./../.."));
     List<WebElement> cells = row.findElements(By.tagName("td"));
     cells.get(7).findElement(By.tagName("a")).click();
@@ -130,7 +132,7 @@ public class ContactHelper extends HelperBase {
 
 
   public Contacts all() {
-    if (contactCache !=null){
+    if (contactCache != null) {
       return new Contacts(contactCache);
     }
     contactCache = new Contacts();
@@ -149,4 +151,20 @@ public class ContactHelper extends HelperBase {
     return new Contacts(contactCache);
   }
 
+  public static String cleaned(String phone) {
+    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+  }
+
+  public String mergePhones(ContactData contact) {
+    return Arrays.asList(contact.getHomePhone(), contact.getWorkPhone(), contact.getMobilePhone()).
+            stream().filter((s) -> !s.equals("")).map(ContactPhoneTests::cleaned)
+            .collect(Collectors.joining("\n"));
+
+  }
+  public String mergeEmails(ContactData contact) {
+    return Arrays.asList(contact.geteMail(),contact.geteMail2(), contact.geteMail3())
+            .stream().filter((s) -> !s.equals(""))
+            .collect(Collectors.joining("\n"));
+
+  }
 }
