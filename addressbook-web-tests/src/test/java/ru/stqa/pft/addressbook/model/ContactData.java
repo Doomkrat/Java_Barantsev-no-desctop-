@@ -7,6 +7,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -21,81 +23,65 @@ public class ContactData {
 
   @Expose
   @Column(name = "firstname")
-  private  String firstname = "";
+  private String firstname = "";
 
   @Expose
   @Column(name = "lastname")
-  private  String lastname = "";
-
-  @XStreamOmitField
-  @Transient
-  private  String group;
+  private String lastname = "";
 
   @Expose
   @Column(name = "home")
   @Type(type = "text")
-  private  String homePhone = "";
+  private String homePhone = "";
 
   @Expose
   @Column(name = "mobile")
   @Type(type = "text")
-  private  String mobilePhone = "";
+  private String mobilePhone = "";
 
   @Expose
   @Column(name = "work")
   @Type(type = "text")
-  private  String workPhone = "";
+  private String workPhone = "";
 
   @XStreamOmitField
   @Transient
-  private  String allPhones = "";
+  private String allPhones = "";
 
   @Expose
   @Column(name = "email")
   @Type(type = "text")
-  private  String eMail = "";
+  private String eMail = "";
 
   @Expose
   @Column(name = "email2")
   @Type(type = "text")
-  private  String eMail2 = "";
+  private String eMail2 = "";
 
   @Expose
   @Column(name = "email3")
   @Type(type = "text")
-  private  String eMail3 = "";
+  private String eMail3 = "";
 
   @XStreamOmitField
   //@Transient
   @Column(name = "address")
   @Type(type = "text")
-  private  String address = "";
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
-            ", group='" + group + '\'' +
-            ", homePhone='" + homePhone + '\'' +
-            ", mobilePhone='" + mobilePhone + '\'' +
-            ", workPhone='" + workPhone + '\'' +
-            ", eMail='" + eMail + '\'' +
-            ", eMail2='" + eMail2 + '\'' +
-            ", eMail3='" + eMail3 + '\'' +
-            ", address='" + address + '\'' +
-            '}';
-  }
+  private String address = "";
 
   @XStreamOmitField
   @Transient
-  private  String allEmails = "";
+  private String allEmails = "";
 
   @Column(name = "photo")
   @Type(type = "text")
   @Transient
   private String photo = "";
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id")
+          , inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
   @Override
   public boolean equals(Object o) {
@@ -131,6 +117,22 @@ public class ContactData {
     return result;
   }
 
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
+            ", eMail='" + eMail + '\'' +
+            ", eMail2='" + eMail2 + '\'' +
+            ", eMail3='" + eMail3 + '\'' +
+            ", address='" + address + '\'' +
+            '}';
+  }
+
   public File getPhoto() {
     return new File(photo);
   }
@@ -141,19 +143,16 @@ public class ContactData {
   }
 
 
-
   public ContactData witheMail(String eMail) {
     this.eMail = eMail;
     return this;
   }
 
 
-
   public ContactData witheMail2(String eMail2) {
     this.eMail2 = eMail2;
     return this;
   }
-
 
 
   public ContactData witheMail3(String eMail3) {
@@ -183,7 +182,6 @@ public class ContactData {
   }
 
 
-
   public ContactData withWorkPhone(String workPhone) {
     this.workPhone = workPhone;
     return this;
@@ -193,6 +191,7 @@ public class ContactData {
     this.mobilePhone = mobilePhone;
     return this;
   }
+
   public ContactData withHomePhone(String homePhone) {
     this.homePhone = homePhone;
     return this;
@@ -218,28 +217,41 @@ public class ContactData {
     return this;
   }
 
-
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
+  public String getAddress() {
+    return address;
   }
-  public String getAddress() { return address; }
 
-  public String getAllEmails() { return allEmails; }
+  public String getAllEmails() {
+    return allEmails;
+  }
 
-  public String geteMail3() { return eMail3; }
+  public String geteMail3() {
+    return eMail3;
+  }
 
-  public String geteMail2() { return eMail2; }
+  public String geteMail2() {
+    return eMail2;
+  }
 
-  public String geteMail() { return eMail; }
+  public String geteMail() {
+    return eMail;
+  }
 
-  public String getWorkPhone() { return workPhone; }
+  public String getWorkPhone() {
+    return workPhone;
+  }
 
-  public String getFirstname() { return firstname; }
+  public String getFirstname() {
+    return firstname;
+  }
 
-  public int getId() { return id; }
+  public int getId() {
+    return id;
+  }
 
-  public String getLastname() { return lastname; }
+  public String getLastname() {
+    return lastname;
+  }
 
   public String getHomePhone() {
     return homePhone;
@@ -249,8 +261,12 @@ public class ContactData {
     return mobilePhone;
   }
 
-  public String getGroup() {
-    return group;
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
 }
