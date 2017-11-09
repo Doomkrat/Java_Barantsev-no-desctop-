@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.tests.ContactPhoneTests;
 
 import java.util.Arrays;
@@ -153,9 +155,9 @@ public class ContactHelper extends HelperBase {
     return new Contacts(contactCache);
   }
 
-  public static String cleaned(String phone) {
+ /* public static String cleaned(String phone) {
     return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
-  }
+  }*/
 
   public String mergePhones(ContactData contact) {
     return Arrays.asList(contact.getHomePhone(), contact.getWorkPhone(), contact.getMobilePhone()).
@@ -169,4 +171,45 @@ public class ContactHelper extends HelperBase {
             .collect(Collectors.joining("\n"));
 
   }
+  public boolean isContactInGroup(ContactData contact, GroupData group){
+    if(contact.getGroups().size() == 0){
+      return false;
+    }
+    Groups contactGroups = contact.getGroups();
+    for (GroupData contactGroup:contactGroups){
+      if (contactGroup.equals(group)){
+        return true;
+      }
+    }
+    return false;
+  }
+
+public void addContactToGroup(ContactData contact, GroupData groupAssigned){
+  selectContatCheckboxById(contact.getId());
+  String groupName = groupAssigned.getName();
+  new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupAssigned.getName());
+  wd.findElement(By.name("add")).click();
+}
+
+public void removeContactFromGroup(ContactData contact, GroupData groupUnassigned){
+  app.goTo().homePage();
+  selectGroup(groupUnassigned.getName());
+  selectContatCheckboxById(contact.getId());
+  wd.findElement(By.name("remove")).click();
+  app.goTo().homePage();
+}
+private void selectGroup(String groupName){
+  new Select(wd.findElement(By.name("group"))).selectByVisibleText(groupName);
+}
+
+public ContactData setContactGroups(ContactData modifiedContact, ContactData contact){
+  Groups contactsGroups = modifiedContact.getGroups();
+  if (contactsGroups.size() > 0) {
+    for (GroupData group : contactsGroups){
+      contact.inGroup(group);
+    }
+    return contact;
+  }
+  return contact;
+}
 }

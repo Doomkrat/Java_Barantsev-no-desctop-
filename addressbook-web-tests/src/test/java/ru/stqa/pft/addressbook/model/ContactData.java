@@ -99,7 +99,8 @@ public class ContactData {
     if (eMail != null ? !eMail.equals(that.eMail) : that.eMail != null) return false;
     if (eMail2 != null ? !eMail2.equals(that.eMail2) : that.eMail2 != null) return false;
     if (eMail3 != null ? !eMail3.equals(that.eMail3) : that.eMail3 != null) return false;
-    return address != null ? address.equals(that.address) : that.address == null;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    return groups != null ? groups.equals(that.groups) : that.groups == null;
   }
 
   @Override
@@ -114,6 +115,7 @@ public class ContactData {
     result = 31 * result + (eMail2 != null ? eMail2.hashCode() : 0);
     result = 31 * result + (eMail3 != null ? eMail3.hashCode() : 0);
     result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (groups != null ? groups.hashCode() : 0);
     return result;
   }
 
@@ -130,6 +132,7 @@ public class ContactData {
             ", eMail2='" + eMail2 + '\'' +
             ", eMail3='" + eMail3 + '\'' +
             ", address='" + address + '\'' +
+            ", groups=" + groups +
             '}';
   }
 
