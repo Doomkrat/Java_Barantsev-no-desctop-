@@ -66,6 +66,6 @@ public class DeletionContactsFromGroupsTest extends TestBase {
       Contacts after = app.db().contacts();
       ContactData contactModifiedDb = after.stream().filter(data -> Objects.equals(data.getId(), modifiedContact.getId())).findFirst().get();
       Assert.assertFalse(app.contact().isContactInGroup(contactModifiedDb, groupUnassigned ));
-
+      verifyContactListUI();
     }
   }

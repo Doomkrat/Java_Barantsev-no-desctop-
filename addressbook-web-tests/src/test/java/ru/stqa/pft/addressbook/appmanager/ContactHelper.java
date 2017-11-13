@@ -39,8 +39,8 @@ public class ContactHelper extends HelperBase {
     if (creation) {
       if ((contactData.getGroups().size() >0 )) {
         Assert.assertTrue(contactData.getGroups().size()==1);
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups()
-                .iterator().next().getName());
+        String groupName= contactData.getGroups().iterator().next().getName();
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupName);
       }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -62,6 +62,9 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContatCheckboxById(int id) {
+    /*WebElement checkbox = wd.findElement(By.cssSelector("input[value='" + id + "']"));
+    WebElement contactRow = checkbox.findElement(By.xpath("./../../."));
+    contactRow.findElement(By.xpath(".//img[@title='Edit']")).click();*/
     if (!wd.findElement(By.name("selected[]")).isSelected()) {
       wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
@@ -186,7 +189,7 @@ public class ContactHelper extends HelperBase {
 
 public void addContactToGroup(ContactData contact, GroupData groupAssigned){
   selectContatCheckboxById(contact.getId());
-  String groupName = groupAssigned.getName();
+ // String groupName = groupAssigned.getName();
   new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupAssigned.getName());
   wd.findElement(By.name("add")).click();
 }
@@ -202,7 +205,7 @@ private void selectGroup(String groupName){
   new Select(wd.findElement(By.name("group"))).selectByVisibleText(groupName);
 }
 
-public ContactData setContactGroups(ContactData modifiedContact, ContactData contact){
+/*public ContactData setContactGroups(ContactData modifiedContact, ContactData contact){
   Groups contactsGroups = modifiedContact.getGroups();
   if (contactsGroups.size() > 0) {
     for (GroupData group : contactsGroups){
@@ -211,5 +214,5 @@ public ContactData setContactGroups(ContactData modifiedContact, ContactData con
     return contact;
   }
   return contact;
-}
+}*/
 }
